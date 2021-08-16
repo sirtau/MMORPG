@@ -1,0 +1,25 @@
+import Phaser from "phaser";
+// create a new scene
+let gameScene = new Phaser.Scene('Game');
+
+// set the configuration of the game
+let config = {
+  type: Phaser.AUTO, // Phaser will use WebGL if available, if not it will use Canvas
+  width: 800,
+  height: 600,
+  scene: {
+    preload: preload,
+    create: create
+  }
+};
+
+function preload() {
+
+}
+
+function create() {
+
+}
+
+// create a new game, pass the configuration
+let game = new Phaser.Game(config);
