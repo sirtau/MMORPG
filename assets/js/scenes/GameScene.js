@@ -2,6 +2,9 @@ import Phaser from 'phaser'
 import Player from '../classes/Player.JS'
 import Chest from '../classes/Chest.JS'
 import Map from '../classes/Map.JS'
+import ChestModel from '../game_manager/ChestModel'
+import GameManager from '../game_manager/GameManager'
+import Spawner from '../game_manager/Spawner'
 
 class GameScene extends Phaser.Scene {
     constructor() {
@@ -16,15 +19,16 @@ class GameScene extends Phaser.Scene {
     create() {
         this.createMap()
         this.createAudio()
-        this.createPlayer()
-        this.createInput()
+
         this.createChests()
         this.spawnChest()
-        this.addCollisions()
+        this.createInput()
         
+        this.createGameManager()
         }
 
     update() {
+    if (!this.player) return;
     this.player.update(this.cursors)
     }
 
@@ -32,9 +36,9 @@ class GameScene extends Phaser.Scene {
         this.goldPickupAudio = this.sound.add('goldSound', { loop: false, volume: .3 })
     }
 
-    createPlayer() {
+    createPlayer(location) {
 
-        this.player = new Player(this, 224, 224, 'characters', 0)
+        this.player = new Player(this, location[0] * 2, location[1] * 2, 'characters', 0)
         this.player.body.setCollideWorldBounds(true)
     }
 
@@ -83,6 +87,15 @@ class GameScene extends Phaser.Scene {
         this.map = new Map(this, 'map', 'background', 'background', 'blocked')
     }
 
+    createGameManager() {
+
+
+        this.events.on('spawnPlayer', (location) => {
+            this.createPlayer(location)
+            this.addCollisions()
+        })
+        this.gameManager = new GameManager(this, this.map.map.objects)
+    }
 
 }
 
