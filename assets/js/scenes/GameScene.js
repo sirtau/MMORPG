@@ -12,25 +12,55 @@ class GameScene extends Phaser.Scene {
     }
 
     create() {
-        this.goldPickupAudio = this.sound.add('goldSound', { loop: false, volume: .3 })
+        this.createAudio()
+        this.createWalls()
+        this.createPlayer()
+        
 
-        this.wall = this.physics.add.image(100, 100, 'button1')
-            .setOrigin(0)
-            .setImmovable()
-    
-        this.cursors = this.input.keyboard.createCursorKeys()
-        this.chest = new Chest(this, 300, 300, 'items', 0)
-        this.player = new Player(this, 32, 32, 'characters', 0)
-    
 
     
-        this.player.body.setCollideWorldBounds(true)
-        this.physics.add.collider(this.player, this.wall)
-        this.physics.add.overlap(this.player, this.chest, this.collectChest, null, this )
+
+
+    
+        this.createInput()
+        this.createChests()
+        this.addCollisions()
+    
+
+
     }
 
     update() {
     this.player.update(this.cursors)
+    }
+
+    createAudio() {
+        this.goldPickupAudio = this.sound.add('goldSound', { loop: false, volume: .3 })
+    }
+
+    createPlayer() {
+
+        this.player = new Player(this, 32, 32, 'characters', 0)
+        this.player.body.setCollideWorldBounds(true)
+    }
+
+    createChests() {
+        this.chest = new Chest(this, 300, 300, 'items', 0)
+    }
+
+    createWalls() {
+        this.wall = this.physics.add.image(100, 100, 'button1')
+            .setOrigin(0)
+            .setImmovable()
+    }
+
+    createInput() {
+        this.cursors = this.input.keyboard.createCursorKeys()
+    }
+
+    addCollisions() {
+        this.physics.add.collider(this.player, this.wall)
+        this.physics.add.overlap(this.player, this.chest, this.collectChest, null, this )
     }
 
     collectChest(player, chest) {

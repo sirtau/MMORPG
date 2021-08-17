@@ -3,8 +3,8 @@ import Phaser from 'phaser'
 class Chest extends Phaser.Physics.Arcade.Image {
     constructor(scene, x, y, key, frame) {
         super(scene, x, y, key, frame)
-        this.scene = scene
-        this.coins = 10
+        this.scene = scene // the scene the object will be added to
+        this.coins = 10 // amount of coins the chest contains
 
         this.scene.physics.world.enable(this)
 
