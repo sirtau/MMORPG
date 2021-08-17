@@ -66,7 +66,7 @@ class GameScene extends Phaser.Scene {
     }
 
     addCollisions() {
-        this.physics.add.collider(this.player, this.wall)
+        this.physics.add.collider(this.player, this.blockedLayer)
         this.physics.add.overlap(this.player, this.chests, this.collectChest, null, this )
     }
 
@@ -87,6 +87,10 @@ class GameScene extends Phaser.Scene {
             .setScale(2)
         this.blockedLayer = this.map.createLayer('blocked', this.tiles, 0, 0)
             .setScale(2)
+
+        this.physics.world.bounds.width = this.map.widthInPixels * 2
+        this.physics.world.bounds.height = this.map.heightInPixels * 2
+        this.cameras.main.setBounds(0,0, this.map.widthInPixels * 2, this.map.heightInPixels * 2)
     }
 
 

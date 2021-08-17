@@ -13,7 +13,7 @@ class Player extends Phaser.Physics.Arcade.Image {
         this.setImmovable(false)
         this.scene.add.existing(this)
 
-        
+        this.scene.cameras.main.startFollow(this)
     }
 
     update(cursors) {
