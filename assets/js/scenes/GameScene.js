@@ -1,4 +1,6 @@
 import Phaser from 'phaser'
+import Player from '../classes/Player.JS'
+import Chest from '../classes/Chest.JS'
 
 class GameScene extends Phaser.Scene {
     constructor() {
@@ -12,12 +14,11 @@ class GameScene extends Phaser.Scene {
             .setOrigin(0)
             .setImmovable()
     
-    
-        this.chest = this.physics.add.image(300, 300, 'items', 0)
-        this.player = this.physics.add.image(32, 32, 'characters', 0)
-            .setScale(2)
-    
         this.cursors = this.input.keyboard.createCursorKeys()
+        this.chest = new Chest(this, 300, 300, 'items', 0)
+        this.player = new Player(this, 32, 32, 'characters', 0)
+    
+
     
         this.player.body.setCollideWorldBounds(true)
         this.physics.add.collider(this.player, this.wall)
@@ -25,18 +26,7 @@ class GameScene extends Phaser.Scene {
     }
 
     update() {
-        this.player.setVelocity(0)
-        if (this.cursors.left.isDown) {
-            this.player.setVelocityX(-160)
-        } else if (this.cursors.right.isDown) {
-            this.player.setVelocityX(160)
-        } 
-    
-        if (this.cursors.up.isDown) {
-            this.player.setVelocityY(-160)
-        } else if (this.cursors.down.isDown) {
-            this.player.setVelocityY(160)
-        } 
+    this.player.update(this.cursors)
     }
 }
 
