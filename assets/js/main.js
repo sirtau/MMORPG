@@ -1,4 +1,8 @@
 import Phaser from "phaser";
+import BootScene from './scenes/BootScene.js'
+import TitleScene from './scenes/TitleScene.js'
+import GameScene from './scenes/GameScene.js'
+import UIScene from './scenes/UIScene.js'
 let gameScene = new Phaser.Scene('Game');
 
 
@@ -7,13 +11,12 @@ let config = {
   width: 1200,
   height: 600,
   pixelArt: true,
-  scene: {
-    // init: init,
-    preload: preload,
-    create: create,
-    update: update,
-    // shutdown: shutdown
-  },
+  scene: [
+      BootScene,
+      TitleScene,
+      GameScene,
+      UIScene
+  ],
   physics: {
       default: 'arcade',
       arcade: {
