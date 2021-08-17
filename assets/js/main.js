@@ -3,8 +3,6 @@ import BootScene from './scenes/BootScene.js'
 import TitleScene from './scenes/TitleScene.js'
 import GameScene from './scenes/GameScene.js'
 import UIScene from './scenes/UIScene.js'
-let gameScene = new Phaser.Scene('Game');
-
 
 let config = {
   type: Phaser.AUTO,
