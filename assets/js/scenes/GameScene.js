@@ -33,7 +33,7 @@ class GameScene extends Phaser.Scene {
 
     createPlayer() {
 
-        this.player = new Player(this, 32, 32, 'characters', 0)
+        this.player = new Player(this, 224, 224, 'characters', 0)
         this.player.body.setCollideWorldBounds(true)
     }
 
@@ -87,6 +87,8 @@ class GameScene extends Phaser.Scene {
             .setScale(2)
         this.blockedLayer = this.map.createLayer('blocked', this.tiles, 0, 0)
             .setScale(2)
+            .setCollisionByExclusion([-1])
+
 
         this.physics.world.bounds.width = this.map.widthInPixels * 2
         this.physics.world.bounds.height = this.map.heightInPixels * 2

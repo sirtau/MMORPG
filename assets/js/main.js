@@ -9,6 +9,7 @@ let config = {
   width: 1200,
   height: 600,
   pixelArt: true,
+  roundPixels: true,
   scene: [
       BootScene,
       TitleScene,
