@@ -1,12 +1,12 @@
 import Phaser from "phaser";
-// create a new scene
 let gameScene = new Phaser.Scene('Game');
 
-// set the configuration of the game
+
 let config = {
-  type: Phaser.AUTO, // Phaser will use WebGL if available, if not it will use Canvas
+  type: Phaser.AUTO,
   width: 1200,
   height: 600,
+  pixelArt: true,
   scene: {
     // init: init,
     preload: preload,
@@ -29,19 +29,26 @@ function preload() {
     this.load.image('button1', 'assets/images/ui/blue_button01.png')
     this.load.spritesheet('items', 'assets/images/items.png', {frameWidth: 32, frameHeight: 32})
     this.load.spritesheet('characters', 'assets/images/characters.png', {frameWidth: 32, frameHeight: 32})
-
+    this.load.audio('goldSound', ['assets/audio/Pickup.wav'])
 }
 
 function create() {
-    this.add.image(100, 100, 'button1').setOrigin(0)
+    let goldPickupAudio = this.sound.add('goldSound', { loop: false, volume: .3 })
+
+    this.wall = this.physics.add.image(100, 100, 'button1')
+        .setOrigin(0)
+        .setImmovable()
 
 
-    this.physics.add.image(300, 300, 'items', 1)
+    this.chest = this.physics.add.image(300, 300, 'items', 0)
     this.player = this.physics.add.image(32, 32, 'characters', 0)
-    this.player.setScale(2)
+        .setScale(2)
 
     this.cursors = this.input.keyboard.createCursorKeys()
 
+    this.player.body.setCollideWorldBounds(true)
+    this.physics.add.collider(this.player, this.wall)
+    this.physics.add.overlap(this.player, this.chest, function(player, chest) {goldPickupAudio.play(); chest.destroy()} )
 }
 
 function update() {
@@ -52,7 +59,6 @@ function update() {
         this.player.setVelocityX(160)
     } 
 
-
     if (this.cursors.up.isDown) {
         this.player.setVelocityY(-160)
     } else if (this.cursors.down.isDown) {
@@ -60,9 +66,4 @@ function update() {
     } 
 }
 
-
-
-
-
-// create a new game, pass the configuration
 let game = new Phaser.Game(config);
