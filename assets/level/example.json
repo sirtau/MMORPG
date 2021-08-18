@@ -1,4 +1,12 @@
 { "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json",
+         "target":"example1.json"
+        }
+    },
  "height":20,
  "infinite":false,
  "layers":[
@@ -29,7 +37,7 @@
         {
          "draworder":"topdown",
          "id":3,
-         "name":"Object Layer 1",
+         "name":"chest_locations",
          "objects":[
                 {
                  "gid":86,
@@ -41,6 +49,11 @@
                          "name":"name",
                          "type":"string",
                          "value":"chest"
+                        }, 
+                        {
+                         "name":"spawner",
+                         "type":"string",
+                         "value":"6"
                         }],
                  "rotation":0,
                  "type":"",
@@ -52,38 +65,72 @@
                 {
                  "gid":86,
                  "height":32,
-                 "id":2,
+                 "id":7,
                  "name":"",
                  "properties":[
                         {
-                         "name":"name",
+                         "name":"spawner",
                          "type":"string",
-                         "value":"chest"
+                         "value":"6"
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":352,
-                 "y":128
+                 "x":32,
+                 "y":64
                 }, 
                 {
                  "gid":86,
                  "height":32,
-                 "id":3,
+                 "id":8,
                  "name":"",
                  "properties":[
                         {
-                         "name":"name",
+                         "name":"spawner",
                          "type":"string",
-                         "value":"chest"
+                         "value":"6"
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":512,
-                 "y":288
+                 "x":96,
+                 "y":64
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":6,
+         "name":"monster_locations",
+         "objects":[],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":4,
+         "name":"player_locations",
+         "objects":[
+                {
+                 "gid":42,
+                 "height":32,
+                 "id":4,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":64,
+                 "y":256
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -91,8 +138,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":4,
- "nextobjectid":4,
+ "nextlayerid":7,
+ "nextobjectid":9,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.7.0",
