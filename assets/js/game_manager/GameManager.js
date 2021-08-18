@@ -1,5 +1,5 @@
 import Spawner from "./Spawner"
-import getTiledProperty from "./utils"
+import {getTiledProperty, SpawnerType} from "./utils"
 
 class GameManager {
     constructor(scene, mapData) {
@@ -58,7 +58,7 @@ class GameManager {
             const config = {
                 spawnInterval: 3000,
                 limit: 3,
-                spawnerType: 'CHEST',
+                spawnerType: SpawnerType.CHEST,
                 id: `chest-${key}`
             }
 
@@ -83,8 +83,8 @@ class GameManager {
     }
 
 
-    deleteChest() {
-      
+    deleteChest(id, chest) {
+      delete this.chests[chestID]
     }
 }
 
