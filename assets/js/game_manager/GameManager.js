@@ -77,13 +77,13 @@ class GameManager {
         this.scene.events.emit("spawnPlayer", location)
     }
 
-    addChest(id, chest) {
-        this.chests[id] = chest
-        console.log(chest)
+    addChest(chestID, chest) {
+        this.chests[chestID] = chest
+
     }
 
 
-    deleteChest(id, chest) {
+    deleteChest(chestID) {
       delete this.chests[chestID]
     }
 }

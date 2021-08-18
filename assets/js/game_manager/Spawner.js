@@ -1,4 +1,5 @@
 import ChestModel from "./ChestModel"
+import { randomNumber, SpawnerType } from "./utils"
 
 class Spawner {
     constructor(config, spawnLocations, addObject, deleteObject) {
@@ -25,15 +26,14 @@ class Spawner {
     }
 
     spawnObject() {
-        console.log('spawning')
-        if (this.objectType === 'CHEST') {
+        if (this.objectType === SpawnerType.CHEST) {
             this.spawnChest()
         }
     }
 
     spawnChest() {
         const location = this.pickRandomLocation()
-        const chest = new ChestModel(location[0], location[1], 10, this.id)
+        const chest = new ChestModel(location[0], location[1], randomNumber(10, 20), this.id)
         this.objectsCreated.push(chest)
         this.addObject(chest.id, chest)
     }
