@@ -38,15 +38,6 @@ class Spawner {
         this.addObject(chest.id, chest)
     }
 
-    // spawnChest() {
-    //     this.interval = setInterval(() => {
-    //         if (this.objectsCreated.length < this.limit) {
-    //             this.spawnObject()
-    //         }
-
-    //     }, this.spawnInterval)
-    // }
-
     pickRandomLocation() {
         const location = this.spawnLocations[Math.floor(Math.random() * this.spawnLocations.length)]
         const invalidLocation = this.objectsCreated.some(obj => {
