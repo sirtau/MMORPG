@@ -8,6 +8,7 @@ class GameManager {
 
         this.spawners = {}
         this.chests = {}
+        this.monsters = {}
         this.playerLocations = []
         this.chestLocations = {}
         this.monsterLocations = {}
@@ -58,17 +59,18 @@ class GameManager {
     }
 
     setupSpawners() {
+        const config = {
+            spawnInterval: 3000,
+            limit: 1,
+            spawnerType: SpawnerType.CHEST,
+            id: ``
+        }
+        let spawner
         
-        console.log(this.chestLocations)
         Object.keys(this.chestLocations).forEach(key => {
-            const config = {
-                spawnInterval: 3000,
-                limit: 1,
-                spawnerType: SpawnerType.CHEST,
-                id: `chest-${key}`
-            }
+            config.id = `chest-${key}`
 
-            const spawner = new Spawner(
+            spawner = new Spawner(
                 config, 
                 this.chestLocations[key], 
                 this.addChest.bind(this), 
@@ -76,6 +78,20 @@ class GameManager {
             )
             this.spawners[spawner.id] = spawner
         })
+
+        Object.keys(this.monsterLocations).forEach(key => {
+            config.id = `monster-${key}`
+            config.spawnerType = SpawnerType.MONSTER
+
+            spawner = new Spawner(
+                config, 
+                this.monsterLocations[key], 
+                this.addMonster.bind(this), 
+                this.deleteMonster.bind(this)
+            )
+            this.spawners[spawner.id] = spawner
+        })
+
     }
 
     spawnPlayer() {
@@ -92,6 +108,17 @@ class GameManager {
 
     deleteChest(chestID) {
       delete this.chests[chestID]
+    }
+
+
+    addMonster(monsterID, monster) {
+        this.monsters[monsterID] = monster
+        this.scene.events.emit('monsterSpawned', monster)
+
+    }
+
+    deleteMonster(monsterID) {
+        delete this.monsters[monsterID]
     }
 }
 

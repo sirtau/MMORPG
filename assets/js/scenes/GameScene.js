@@ -62,6 +62,10 @@ class GameScene extends Phaser.Scene {
 
     }
 
+    spawnMonster(monster) {
+        console.log(monster)
+    }
+
     createInput() {
         this.cursors = this.input.keyboard.createCursorKeys()
     }
@@ -90,10 +94,17 @@ class GameScene extends Phaser.Scene {
             this.createPlayer(location)
             this.addCollisions()
         })
+
         this.events.on('spawnChest', (chest) => {
             this.spawnChest(chest)
             this.addCollisions()
         })
+
+        this.events.on('monsterSpawned', (monster) => {
+            this.spawnMonster(monster)
+            this.addCollisions()
+        })
+        
         this.gameManager = new GameManager(this, this.map.map.objects)
     }
 
