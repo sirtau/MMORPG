@@ -26,24 +26,24 @@ class GameManager {
         this.mapData.forEach((layer) => {
             if (layer.name === "player_locations") {
                 layer.objects.forEach((obj) => {
-                    this.playerLocations.push([obj.x, obj.y])
+                    this.playerLocations.push([obj.x + (obj.width / 2), obj.y - (obj.height / 2)])
                 })
             } else if (layer.name === "chest_locations") {
                 layer.objects.forEach((obj) => {
                     var spawner = getTiledProperty(obj, "spawner")
                     if (this.chestLocations[spawner]) {
-                        this.chestLocations[spawner].push([obj.x, obj.y])
+                        this.chestLocations[spawner].push([obj.x + (obj.width / 2), obj.y - (obj.height / 2)])
                     } else {
-                        this.chestLocations[spawner] = [[obj.x, obj.y]]
+                        this.chestLocations[spawner] = [[obj.x + (obj.width / 2), obj.y - (obj.height / 2)]]
                     }
                 })
             } else if (layer.name === "monster_locations") {
                 layer.objects.forEach((obj) => {
                     var spawner = getTiledProperty(obj, "spawner")
                     if (this.monsterLocations[spawner]) {
-                        this.monsterLocations[spawner].push([obj.x, obj.y])
+                        this.monsterLocations[spawner].push([obj.x + (obj.width / 2), obj.y - (obj.height / 2)])
                     } else {
-                        this.monsterLocations[spawner] = [[obj.x, obj.y]]
+                        this.monsterLocations[spawner] = [[obj.x + (obj.width / 2), obj.y - (obj.height / 2)]]
                     }
                 })
             }
