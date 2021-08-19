@@ -49,7 +49,13 @@ class GameManager {
         })
     }
 
-    setupEventListener() {}
+    setupEventListener() {
+        this.scene.events.on('pickUpChest', (chestID) => {
+            if (this.chests[chestID]) {
+                this.spawners[this.chests[chestID].spawnerID].removeObject(chestID)
+            }
+        })
+    }
 
     setupSpawners() {
         
@@ -57,7 +63,7 @@ class GameManager {
         Object.keys(this.chestLocations).forEach(key => {
             const config = {
                 spawnInterval: 3000,
-                limit: 3,
+                limit: 1,
                 spawnerType: SpawnerType.CHEST,
                 id: `chest-${key}`
             }
@@ -79,6 +85,7 @@ class GameManager {
 
     addChest(chestID, chest) {
         this.chests[chestID] = chest
+        this.scene.events.emit("spawnChest", chest)
 
     }
 
