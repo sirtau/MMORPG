@@ -22,6 +22,7 @@ class GameManager {
         this.spawnPlayer()
     }
 
+    // TODO - Turn the OBJ /2 - /2 etc mess into a quick util function. getPos(obj) or something.
     parseMapData() {
         this.mapData.forEach((layer) => {
             if (layer.name === "player_locations") {
