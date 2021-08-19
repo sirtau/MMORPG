@@ -1,11 +1,12 @@
 import Phaser from 'phaser'
-import Player from '../classes/Player.JS'
+import Player from '../classes/player/Player.JS'
 import Chest from '../classes/Chest.JS'
 import Monster from '../classes/Monster.JS'
 import Map from '../classes/Map.JS'
 import ChestModel from '../game_manager/ChestModel'
 import GameManager from '../game_manager/GameManager'
 import Spawner from '../game_manager/Spawner'
+import PlayerContainer from '../classes/player/PlayerContainer'
 
 class GameScene extends Phaser.Scene {
     constructor() {
@@ -39,7 +40,7 @@ class GameScene extends Phaser.Scene {
 
     createPlayer(location) {
 
-        this.player = new Player(this, location[0] * 2, location[1] * 2, 'characters', 0)
+        this.player = new PlayerContainer(this, location[0] * 2, location[1] * 2, 'characters', 0)
         this.player.body.setCollideWorldBounds(true)
     }
 
