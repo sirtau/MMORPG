@@ -57,6 +57,13 @@ class GameManager {
                 this.spawners[this.chests[chestID].spawnerID].removeObject(chestID)
             }
         })
+
+        this.scene.events.on('destroyEnemy', (monsterID) => {
+            console.log('destroyed')
+            if (this.monsters[monsterID]) {
+                this.spawners[this.monsters[monsterID].spawnerID].removeObject(monsterID)
+            }
+        })
     }
 
     setupSpawners() {

@@ -79,11 +79,12 @@ class GameScene extends Phaser.Scene {
                 monsterObject.maxHealth
             )
             this.monsters.add(monster)
+            monster.setCollideWorldBounds(true);
         } else {
             monster.id = monsterObject.id
             monster.health = monsterObject.health
             monster.maxHealth = monsterObject.maxHealth
-            monster.setTexture('mosters', monsterObject.frame)
+            monster.setTexture('monsters', monsterObject.frame)
             monster.setPosition(monsterObject.x * 2, monsterObject.y * 2)
             monster.makeActive()
         }
@@ -97,6 +98,13 @@ class GameScene extends Phaser.Scene {
     addCollisions() {
         this.physics.add.collider(this.player, this.map.blockedLayer)
         this.physics.add.overlap(this.player, this.chests, this.collectChest, null, this )
+        this.physics.add.collider(this.monsters, this.map.blockedLayer)
+        this.physics.add.overlap(this.player, this.monsters, this.enemyOverlap, null, this )
+    }
+
+    enemyOverlap(player, enemy) {
+        enemy.makeInactive()
+        this.events.emit('destroyEnemy', enemy.id)
     }
 
     collectChest(player, chest) {

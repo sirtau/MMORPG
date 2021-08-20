@@ -43,7 +43,15 @@ class Spawner {
 
     spawnMonster() {
         const location = this.pickRandomLocation()
-        const monster = new MonsterModel(location[0], location[1], randomNumber(10, 20), this.id, randomNumber(0, 20), randomNumber(3, 5), 1)
+        const monster = new MonsterModel(
+            location[0], 
+            location[1], 
+            randomNumber(10, 20), 
+            this.id, 
+            randomNumber(0, 20), 
+            randomNumber(3, 5),
+            1,
+        )
         this.objectsCreated.push(monster)
         this.addObject(monster.id, monster)
     }
