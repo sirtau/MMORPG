@@ -10,8 +10,6 @@ class Player extends Phaser.Physics.Arcade.Image {
         this.setScale(2)
         this.setImmovable(true)
         this.scene.add.existing(this)
-        this.setSize(18, 15)
-        this.setOffset(8, 18)
     }
 
 }
